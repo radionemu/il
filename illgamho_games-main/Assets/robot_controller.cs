@@ -16,13 +16,10 @@ public class robot_controller : player_controller
     [SerializeField]
     private float distance = 0.5f;
 
-    [Header("player_info")]
-    [SerializeField] private player_controller player_controller_cs;
 
     // Start is called before the first frame update
     void Start()
     {
-        player_controller_cs = plalyer_obj.GetComponent<player_controller>();
         player_rigid2d = gameObject.GetComponent<Rigidbody2D>();
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
@@ -49,7 +46,7 @@ public class robot_controller : player_controller
             if (Mathf.Abs(Vector2.Distance(plalyer_obj.transform.position, gameObject.transform.position)) <= distance)
             {
                 spriteRenderer.color = Color.green;
-                if (Input.GetKey(ride_key_code) && player_controller_cs.grab_block == null) //block grab할때 못타게 막기
+                if (Input.GetKey(ride_key_code))
                 {
                     ride();
                 }
